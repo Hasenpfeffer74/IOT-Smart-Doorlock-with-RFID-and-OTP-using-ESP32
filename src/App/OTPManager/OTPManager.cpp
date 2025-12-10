@@ -19,24 +19,18 @@ bool OTPManager::generateOTP() {
     // Generate 6-digit OTP
     generatedOTP = random(100000, 999999);
     otpGeneratedTime = millis();
-    
+
     Serial.printf("🔐 OTP: Generated %06d\n", generatedOTP);
-    
+
     // Show on LCD
     lcd->showMessage("Generating OTP...", "Please wait...");
     delay(500);
-    
-    // Send via Telegram
-    bool sent = telegram->sendOTP(generatedOTP);
-    
-    if (sent) {
-        lcd->showMessageTimed("OTP Sent!", "Check Telegram", 2000);
-        return true;
-    } else {
-        lcd->showMessageTimed("OTP Send Failed!", "Check WiFi", 2000);
-        generatedOTP = 0; // Invalidate OTP
-        return false;
-    }
+
+    // Send via Telegram (sendOTP returns void)
+    telegram->sendOTP(generatedOTP);
+
+    lcd->showMessageTimed("OTP Sent!", "Check Telegram", 2000);
+    return true;
 }
 
 bool OTPManager::addDigit(char digit) {
