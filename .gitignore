@@ -1,0 +1,44 @@
+# ==========================
+# ESP32 / Arduino
+# ==========================
+*.pio
+.pio/
+build/
+out/
+.cache/
+*.elf
+*.bin
+*.hex
+
+# Arduino IDE
+*.cpp.d
+*.cpp.o
+*.h.d
+*.h.o
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# PlatformIO
+.pioenvs/
+.piolibdeps/
+.pio/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.bak
+*.swp
+~*
+
+# Documents backup (Word, PDF autosave)
+*.pdf~
+*.docx~
+*.tmp
