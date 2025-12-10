@@ -1,34 +1,20 @@
 // ═══════════════════════════════════════════════════════════
 // FILE: src/App/OTPManager/OTPManager.h
 // ═══════════════════════════════════════════════════════════
-#ifndef OTP_MANAGER_H
-#define OTP_MANAGER_H
+#ifndef OTPMANAGER_H
+#define OTPMANAGER_H
 
 #include <Arduino.h>
-#include "App/TelegramNotifier/TelegramNotifier.h"
-#include "Drivers/LCD/LCD_Driver.h"
+#include "../TelegramNotifier/TelegramNotifier.h"
+#include "../../Drivers/LCD/LCD_Driver.h"
+#include "../../Config.h"  // Add this to use OTP_LENGTH and OTP_EXPIRE_TIME macros
 
 /**
  * @brief One-Time Password Manager
  * @details Generates, validates, and manages OTP lifecycle
  */
 class OTPManager {
-private:
-    int generatedOTP;
-    unsigned long otpGeneratedTime;
-    String inputBuffer;
-    TelegramNotifier* telegram;
-    LCD_Driver* lcd;
-    
-    static const uint16_t OTP_LENGTH = 6;
-    static const uint32_t OTP_EXPIRE_TIME = 60000; // 60 seconds
-
 public:
-    /**
-     * @brief Constructor
-     * @param telegram_notifier Pointer to TelegramNotifier
-     * @param lcd_driver Pointer to LCD_Driver
-     */
     OTPManager(TelegramNotifier* telegram_notifier, LCD_Driver* lcd_driver);
     
     /**
@@ -93,6 +79,13 @@ public:
      * @brief Update input display on LCD
      */
     void updateInputDisplay();
+    
+private:
+    int generatedOTP;
+    unsigned long otpGeneratedTime;
+    String inputBuffer;
+    TelegramNotifier* telegram;
+    LCD_Driver* lcd;
 };
 
-#endif // OTP_MANAGER_H
+#endif // OTPMANAGER_H
